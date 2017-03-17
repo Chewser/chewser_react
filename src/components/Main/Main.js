@@ -12,7 +12,9 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
-      place: {}
+      place: {
+        name: ''
+      }
     }
   }
 
@@ -32,7 +34,18 @@ export default class Main extends Component {
     fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
     })
-    .then(r => r.json().then(data => console.log(data)))
+    .then((r) => {
+      r.json()
+        .then((places) => {
+          console.log(places);
+          const randomIndex = Math.floor(Math.random() * places.businesses.length);
+          console.log(randomIndex);
+          const place = places.businesses[randomIndex];
+          console.log(place);
+
+          this.setState({ place });
+      })
+    })
     .catch((err) => console.log(err));
   }
 
@@ -41,9 +54,10 @@ export default class Main extends Component {
     return(
       <div>
         <Nav />
-        <button onClick={this.findPlaces.bind(this)}>FOOD NOW.</button>
-
-        <Place place={this.state.place} />
+        <main>
+          <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
+          <Place place={this.state.place} />
+        </main>
       </div>
     )
   }

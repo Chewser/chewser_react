@@ -1,4 +1,64 @@
+body {
+  height: 100vh;
+}
+
 .header {
   background-color: darkblue;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header h1 {
+  margin-left: 30px;
+  margin-bottom: 0px;
+}
+
+.header p {
+  margin-right: 30px;
+  margin-bottom: 0px;
+}
+
+main {
+  text-align: center;
+}
+
+.place {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+}
+
+.resultContainer {
+  max-width: 960px;
+  height: 300px;
+  display: flex;
+  margin: 0 auto;
+}
+
+.resultImage {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.resultImage img {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+.resultText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchButton {
+  margin: 20px auto;
 }
