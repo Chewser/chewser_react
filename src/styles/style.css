@@ -92,6 +92,7 @@ main {
   align-items: center;
   height: 60%;
   margin-top: 40px;
+
 }
 
 .resultContainer {
@@ -99,6 +100,9 @@ main {
   height: 300px;
   display: flex;
   margin: 0 auto;
+  background-color: rgba(50,50,50,.03);
+  width: 50%;
+  padding: 10px;
 }
 
 .resultImage {
