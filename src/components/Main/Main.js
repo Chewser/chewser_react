@@ -67,12 +67,13 @@ export default class Main extends Component {
         <Nav />
         <main>
           <div id="hasButton">
-            <button onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
+            <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           </div>
           <Place place={this.state.place} />
         </main>
         <div id="loadingScreen">
-        <h1>LOADING....</h1>
+        <h1>LOADING...</h1>
+
         </div>
       </div>
     )
