@@ -53,6 +53,7 @@ button {
 .filterControls button {
   display: inline;
   margin-left: 30px;
+  width: 300px;
 }
 
 .header h1 {
