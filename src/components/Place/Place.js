@@ -39,8 +39,8 @@ class Place extends Component {
             </div>
           </div>
           <div className="filterControls">
-            <button>Nooooo... maybe not that.</button>
-            <button>Too expensive</button>
+            <button>Maybe not that...<br />Try again</button>
+            <button>Too expensive?</button>
           </div>
         </div>
       )

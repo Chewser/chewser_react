@@ -15,7 +15,7 @@ export default class Nav extends Component {
       <div>
         <div className="header">
           <h1>Chewser</h1>
-          <p className='tagline'>{this.state.tagline}</p>
+          <h3 className='tagline'>{this.state.tagline}</h3>
 
         </div>
       </div>

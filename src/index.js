@@ -3,8 +3,8 @@ import ReactDom from 'react-dom';
 import { Route, Router, browserHistory } from 'react-router';
 
 
-import "./vendor/css/skeleton_css/normalize.css";
-import "./vendor/css/skeleton_css/skeleton.css";
+// import "./vendor/css/skeleton_css/normalize.css";
+// import "./vendor/css/skeleton_css/skeleton.css";
 import "./styles/style.css";
 
 
