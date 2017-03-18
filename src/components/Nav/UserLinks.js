@@ -28,7 +28,7 @@ class UserLinks extends Component {
       return (
         <div>
           <button><Link to="/dashboard">Dashboard</Link></button>
-          <button onClick={this.Logout.bind(this)}>Logout</button>
+          <button onClick={this.Logout.bind(this)}><Link to="/">Logout</Link></button>
         </div>
       )
     } else {

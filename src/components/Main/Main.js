@@ -46,6 +46,7 @@ export default class Main extends Component {
           this.setState({ place });
       })
     })
+
     .catch((err) => console.log(err));
   }
 
@@ -54,10 +55,17 @@ export default class Main extends Component {
     return(
       <div>
         <Nav />
+<<<<<<< HEAD
         <main>
           <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           <Place place={this.state.place} />
         </main>
+=======
+        <div id='hasButton'>
+          <button className="search" onClick={this.findPlaces.bind(this)}>FOOD NOW</button>
+        </div>
+        <Place place={this.state.place} />
+>>>>>>> b09a3ba2a1bd11e09e7c5a5a5a638e79bd55584f
       </div>
     )
   }

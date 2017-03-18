@@ -5,9 +5,13 @@ class Place extends Component {
   constructor(props) {
     super(props);
 
+    //why am i not getting this console.log?
+    console.log('this.props: ', this.props)
+
     this.state = {
       restaurant: {}
     };
+
   }
 
   render() {
@@ -39,6 +43,7 @@ class Place extends Component {
       )
     } else {
       return(<div></div>)
+
     }
   }
 }
