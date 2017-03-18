@@ -4,8 +4,8 @@ import { Route, Router, browserHistory } from 'react-router';
 
 
 import "./styles/style.css";
-import "./vendor/css/skeleton_css/normalize.css";
-import "./vendor/css/skeleton_css/skeleton.css";
+// import "./vendor/css/skeleton_css/normalize.css";
+// import "./vendor/css/skeleton_css/skeleton.css";
 
 
 
