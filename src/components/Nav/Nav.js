@@ -7,7 +7,7 @@ export default class Nav extends Component {
 
     this.state = {
 
-      tagline: '#SheepLife'
+      tagline: 'We Choose, You Eat'
     }
   }
 
@@ -21,7 +21,7 @@ export default class Nav extends Component {
       <div>
         <div className="header">
           <h1>Chewser</h1>
-          <p>{this.state.tagline}</p>
+          <p className='tagline'>{this.state.tagline}</p>
           <UserLinks />
         </div>
       </div>

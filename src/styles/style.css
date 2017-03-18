@@ -1,4 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+
+body {
+background-image: url('hamburger.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .header {
-  background-color: darkblue;
+  font-family: 'Slabo 27px', serif;
+  font-size: 1.3rem;
+  padding-top: 10px;
+  text-align: center;
+
+}
+
+ h1 {
+  font-size: 3.5rem;
+}
+
+.tagline {
+  color: rgba(48,120,255,1)
+}
+
+#hasButton {
+    display: flex;
+  /*flex-direction: column;*/
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+ a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background-color: rgba(48,120,255,1);
   color: white;
+  padding: 10px;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  border: 2px outset rgba(48,120,255,1);
+  margin-top: 5%;
+  cursor: pointer;
+  outline: none;
+
+}
+
+button:active {
+  background-color: rgba(48,120,255,.5);
+  border: none;
 }
