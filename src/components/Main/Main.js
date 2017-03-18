@@ -27,6 +27,17 @@ export default class Main extends Component {
         long: position.coords.longitude
       })
       });
+
+    let modal = setInterval(() => {
+      console.log('Checking for coordinates...')
+      if(this.state.lat) {
+        console.log('Found you!')
+        document
+          .getElementById('loadingScreen')
+          .setAttribute('style', 'visibility: hidden');
+        clearInterval(modal);
+      }
+    }, 200);
   }
 
 
@@ -50,7 +61,6 @@ export default class Main extends Component {
     .catch((err) => console.log(err));
   }
 
-
   render() {
     return(
       <div>
@@ -61,6 +71,9 @@ export default class Main extends Component {
           </div>
           <Place place={this.state.place} />
         </main>
+        <div id="loadingScreen">
+        <h1>LOADING....</h1>
+        </div>
       </div>
     )
   }
