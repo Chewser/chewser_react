@@ -3,16 +3,9 @@ import ReactDom from 'react-dom';
 import { Route, Router, browserHistory } from 'react-router';
 
 
-<<<<<<< HEAD
 import "./vendor/css/skeleton_css/normalize.css";
 import "./vendor/css/skeleton_css/skeleton.css";
 import "./styles/style.css";
-=======
-import "./styles/style.css";
-// import "./vendor/css/skeleton_css/normalize.css";
-// import "./vendor/css/skeleton_css/skeleton.css";
->>>>>>> b09a3ba2a1bd11e09e7c5a5a5a638e79bd55584f
-
 
 
 import Main from './components/Main/Main';

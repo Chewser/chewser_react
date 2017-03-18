@@ -30,6 +30,9 @@ class Place extends Component {
               Rating: {this.props.place.rating}<br />
               Price: {this.props.place.price}<br />
               Review Count: {this.props.place.review_count}</p>
+              <p><i>
+                {this.props.place.categories[0].title} / {this.props.place.categories[1].title}
+              </i></p>
             </div>
             <div className="resultImage">
               <img src={this.props.place.image_url} />
