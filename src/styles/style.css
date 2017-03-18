@@ -140,7 +140,7 @@ button:active {
   border: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .resultContainer {
     flex-direction: column-reverse;
     margin: 50px;
