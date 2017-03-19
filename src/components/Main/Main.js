@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router";
 
 import Place from '../Place/Place';
 import Nav from '../Nav/Nav';
@@ -70,10 +71,25 @@ export default class Main extends Component {
             <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           </div>
           <Place place={this.state.place} />
-        </main>
-        <div id="loadingScreen">
-        <h1>LOADING...</h1>
 
+        </main>
+        <footer>
+            <div className="otherLinks">
+              <ul>
+                <li><Link to="#">About</Link></li>
+                <li></li>
+                <li><Link to="#">Origins</Link></li>
+                <li></li>
+                <li><Link to="#">Yelp</Link></li>
+
+              </ul>
+              <Link to="#">Decidr</Link>
+              <Link to="#">Squiddit</Link>
+              <Link to="#">Remote Read</Link>
+            </div>
+          </footer>
+        <div id="loadingScreen">
+          <h1>LOADING...</h1>
         </div>
       </div>
     )
