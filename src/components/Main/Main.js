@@ -12,6 +12,7 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
+      categories: ['afgani', 'african', 'sengalese', 'southafrican', 'newamerican', 'tradamerican', 'andalusian', 'arabian', 'argentine', 'armenian', 'asianfusion', 'asturian', 'australian', 'austrian', 'bangladeshi', 'bbq', 'basque', 'brazilian', 'british', 'buffets', 'burgers', 'burmese', 'cajun', 'cambodian', 'carribean', 'catalan', 'cheesesteaks', 'chickenshop', 'chicken_wings', 'chinese', 'comfortfood', 'cuban', 'czech', 'diners', 'dinnertheater', 'ethiopian', 'hotdogs', 'filipino', 'fishnchips', 'foodcourt', 'fondue', 'french', 'german', 'greek', 'guamanian', 'halal', 'hawaiian', 'himalayan', 'honduran', 'hkcafe', 'hotdog', 'hungarian', 'iberian', 'indpak', 'indonesian', 'irish', 'italian', 'japanese', 'kebab', 'korean', 'kosher', 'laotian', 'latin', 'raw_food', 'malaysian', 'mediterranean', 'mexican', 'mideastern', 'lebanese', 'mongolian', 'moroccan', 'newmexican', 'nicaraguan', 'noodles', 'pakistani', 'panasian', 'peruvian', 'pizza', 'polish', 'portugese', 'russian', 'salad', 'sandwiches', 'scandanavian', 'scottish', 'seafood', 'singaporean', 'slovakian', 'soulfood', 'soup', 'southern', 'spanish', 'srilankan', 'steak', 'sushi', 'syrian', 'taiwanese', 'tapas', 'tapasmallplates', 'tex-mex', 'thai', 'turkish', 'ukranian', 'uzbek', 'vegan', 'vegetarian', 'vietnamese', 'waffles', 'wraps'],
       place: {
         name: ''
       }
