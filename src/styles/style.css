@@ -5,6 +5,7 @@ body {
   background-image: url('hamburger.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  /*padding: 0;*/
 }
 
 .header {
@@ -92,6 +93,7 @@ main {
   align-items: center;
   height: 60%;
   margin-top: 40px;
+
 }
 
 .resultContainer {
@@ -99,6 +101,9 @@ main {
   height: 300px;
   display: flex;
   margin: 0 auto;
+  background-color: rgba(50,50,50,.03);
+  width: 50%;
+  padding: 10px;
 }
 
 .resultImage {
@@ -140,7 +145,45 @@ button:active {
   border: none;
 }
 
-@media (max-width: 700px) {
+footer {
+  height: 150px;
+  width: 100%;
+  background-color: rgba(235,235,235,1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /*float: bottom;*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  margin-top: 200px;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-family: 'Slabo 27px', serif;
+}
+
+footer a {
+  text-decoration: none;
+
+}
+
+footer a:hover {
+  color: rgba(48,120,255,1);
+}
+
+.otherLinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding-right: 30px;
+  border-right: 1px black solid;
+}
+
+@media (max-width: 900px) {
   .resultContainer {
     flex-direction: column-reverse;
     margin: 50px;
