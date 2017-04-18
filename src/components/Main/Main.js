@@ -83,6 +83,26 @@ export default class Main extends Component {
     .catch((err) => console.log(err));
   }
 
+  hoistTest() {
+    console.log('You hoisted state!', this.state.place.name);
+  }
+
+  banCategory() {
+    const arr = this.state.noCategories;
+    const noCategories= arr.concat(this.state.place.categories[0].alias);
+    this.setState({ noCategories });
+    this.findPlaces();
+  }
+
+  banVenue() {
+    const arr = this.state.noVenues;
+    const noVenues= arr.concat(this.state.place.name);
+    this.setState({ noVenues });
+    this.findPlaces();
+  }
+
+
+
   render() {
     return(
       <div>
@@ -91,7 +111,7 @@ export default class Main extends Component {
           <div id="hasButton">
             <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           </div>
-          <Place place={this.state.place} />
+          <Place place={this.state.place} banVenue={this.banVenue.bind(this)} banCategory={this.banCategory.bind(this)} />
         </main>
         <footer>
             <div className="otherLinks">

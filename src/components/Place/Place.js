@@ -40,8 +40,8 @@ class Place extends Component {
             </div>
           </div>
           <div className="filterControls">
-            <button>I don't want<br />{this.props.place.name}</button>
-            <button>I don't like<br />{this.props.place.categories[0].title} food.</button>
+            <button onClick={this.props.banVenue}>I don't want<br />{this.props.place.name}</button>
+            <button onClick={this.props.banCategory}>I don't like<br />{this.props.place.categories[0].title}.</button>
           </div>
         </div>
       )
