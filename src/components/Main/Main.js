@@ -95,17 +95,10 @@ export default class Main extends Component {
         </main>
         <footer>
             <div className="otherLinks">
-              <ul>
-                <li><Link to="#">About</Link></li>
-                <li></li>
-                <li><Link to="#">Origins</Link></li>
-                <li></li>
-                <li><Link to="#">Yelp</Link></li>
-
-              </ul>
-              <Link to="#">Decidr</Link>
-              <Link to="#">Squiddit</Link>
-              <Link to="#">Remote Read</Link>
+              <p> Created by
+              <Link to="http://alessamessineo.com"> Alessa Messineo</Link> &
+              <Link to="http://marcelhamel.com"> Marcel Hamel</Link>
+              </p>
             </div>
           </footer>
         <div id="loadingScreen">
