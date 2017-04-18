@@ -21,27 +21,7 @@ export default class Main extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log('Component mounted.')
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords.latitude, position.coords.longitude);
-      this.setState({
-        lat: position.coords.latitude,
-        long: position.coords.longitude
-      })
-      });
 
-    let modal = setInterval(() => {
-      console.log('Checking for coordinates...')
-      if(this.state.lat) {
-        console.log('Found you!')
-        document
-          .getElementById('loadingScreen')
-          .setAttribute('style', 'visibility: hidden');
-        clearInterval(modal);
-      }
-    }, 200);
-  }
 
 
   findPlaces() {
@@ -80,14 +60,39 @@ export default class Main extends Component {
     .catch((err) => console.log(err));
   }
 
+  componentDidMount() {
+    console.log('Component mounted.')
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude, position.coords.longitude);
+      this.setState({
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      })
+
+    });
+
+    let modal = setInterval(() => {
+      console.log('Checking for coordinates...')
+      if(this.state.lat) {
+        console.log('Found you!')
+        document
+          .getElementById('loadingScreen')
+          .setAttribute('style', 'visibility: hidden');
+        clearInterval(modal);
+        this.findPlaces();
+      }
+    }, 200);
+
+
+
+  }
+
   render() {
     return(
       <div>
         <Nav />
         <main>
-          <div id="hasButton">
-            <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
-          </div>
+
           <Place place={this.state.place} />
 
         </main>
@@ -100,7 +105,7 @@ export default class Main extends Component {
             </div>
           </footer>
         <div id="loadingScreen">
-          <h1>LOADING...</h1>
+          <h1 className="finding">Finding food...</h1>
         </div>
       </div>
     )
