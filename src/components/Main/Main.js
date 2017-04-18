@@ -13,7 +13,7 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
-      noCategories: ['newamerican', 'thai', 'pizza'],
+      noCategories: [],
       noVenues: [],
       place: {
         name: ''
@@ -52,6 +52,9 @@ export default class Main extends Component {
       r.json()
         .then((places) => {
 
+          console.log('Banned categories:', this.state.noCategories);
+          console.log('Banned venues:', this.state.noVenues);
+
           const randomize = (data) => {
             // Find a random index based on length of places array...
             let randomIndex = Math.floor(Math.random() * data.businesses.length);
@@ -89,7 +92,6 @@ export default class Main extends Component {
             <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           </div>
           <Place place={this.state.place} />
-
         </main>
         <footer>
             <div className="otherLinks">
