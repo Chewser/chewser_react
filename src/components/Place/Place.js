@@ -32,7 +32,7 @@ class Place extends Component {
               Review Count: {this.props.place.review_count}</p>
               <p>Phone: {this.props.place.display_phone}</p>
               <p><i>
-                {this.props.place.categories[0].title} / {this.props.place.categories[1].title}
+                {this.props.place.categories[0].title}
               </i></p>
             </div>
             <div className="resultImage">
