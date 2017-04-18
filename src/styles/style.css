@@ -146,6 +146,9 @@ button:active {
 }
 
 footer {
+
+  height: 50px;
+
   /* Set position to fixed at bottom of screen, reduced div height to min necessary */
   width: 100%;
   background-color: rgba(235,235,235,1);
@@ -191,7 +194,7 @@ ul {
   }
 
   .resultImage{
-    /*margin: 20px;*/
+    /*margin: 20px;
     /*justify-content: flex-start;*/
     align-content: flex-start;
   }
