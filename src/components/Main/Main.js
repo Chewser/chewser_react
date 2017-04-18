@@ -13,7 +13,9 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
-      categories: ['afgani', 'african', 'sengalese', 'southafrican', 'newamerican', 'tradamerican', 'andalusian', 'arabian', 'argentine', 'armenian', 'asianfusion', 'asturian', 'australian', 'austrian', 'bangladeshi', 'bbq', 'basque', 'brazilian', 'british', 'buffets', 'burgers', 'burmese', 'cajun', 'cambodian', 'carribean', 'catalan', 'cheesesteaks', 'chickenshop', 'chicken_wings', 'chinese', 'comfortfood', 'cuban', 'czech', 'diners', 'dinnertheater', 'ethiopian', 'hotdogs', 'filipino', 'fishnchips', 'foodcourt', 'fondue', 'french', 'german', 'greek', 'guamanian', 'halal', 'hawaiian', 'himalayan', 'honduran', 'hkcafe', 'hotdog', 'hungarian', 'iberian', 'indpak', 'indonesian', 'irish', 'italian', 'japanese', 'kebab', 'korean', 'kosher', 'laotian', 'latin', 'raw_food', 'malaysian', 'mediterranean', 'mexican', 'mideastern', 'lebanese', 'mongolian', 'moroccan', 'newmexican', 'nicaraguan', 'noodles', 'pakistani', 'panasian', 'peruvian', 'pizza', 'polish', 'portugese', 'russian', 'salad', 'sandwiches', 'scandanavian', 'scottish', 'seafood', 'singaporean', 'slovakian', 'soulfood', 'soup', 'southern', 'spanish', 'srilankan', 'steak', 'sushi', 'syrian', 'taiwanese', 'tapas', 'tapasmallplates', 'tex-mex', 'thai', 'turkish', 'ukranian', 'uzbek', 'vegan', 'vegetarian', 'vietnamese', 'waffles', 'wraps'],
+      noCategories:
+        [],
+      noVenues: [],
       place: {
         name: ''
       }
@@ -50,17 +52,45 @@ export default class Main extends Component {
     .then((r) => {
       r.json()
         .then((places) => {
-          console.log(places);
-          const randomIndex = Math.floor(Math.random() * places.businesses.length);
-          console.log(randomIndex);
-          const place = places.businesses[randomIndex];
-          console.log(place);
 
-          this.setState({ place });
+          this.randomize(places);
+
+          // The below is our previous code to set a random restaurant...
+
+          // // Find random index value based on length of places array...
+          // const randomIndex = Math.floor(Math.random() * places.businesses.length);
+          // // Place = Restaurant at randomIndex in places array...
+          // const place = places.businesses[randomIndex];
+
+          // Set random restaurant to place in state
+          // this.setState({ place });
       })
     })
 
     .catch((err) => console.log(err));
+  }
+
+  randomize(results) {
+    // Find a random index based on length of places array...
+    let randomIndex = Math.floor(Math.random() * results.businesses.length);
+    // Choose a restaurant based on random index
+    let place = results.businesses[randomIndex];
+    // Make sure it hasn't been previously rejected by user
+    this.notRejected(place);
+  }
+
+  notRejected(place) {
+    if (
+      // If they said no to specific resturant...
+      this.state.noVenues.includes(place.name) ||
+      //... OR they said no to category...
+      place.categories.some(category => this.state.noCategories.includes(category))) {
+      //... run the randomize function again try to pick another place to eat.
+      this.randomize();
+    } else {
+      //... if the user doesn't hate this yet, set it to state
+      this.setState({ place });
+    }
   }
 
   render() {
