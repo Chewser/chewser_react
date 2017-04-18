@@ -13,8 +13,7 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
-      noCategories:
-        [],
+      noCategories: ['newamerican', 'thai', 'pizza'],
       noVenues: [],
       place: {
         name: ''
@@ -53,44 +52,32 @@ export default class Main extends Component {
       r.json()
         .then((places) => {
 
-          this.randomize(places);
+          const randomize = (data) => {
+            // Find a random index based on length of places array...
+            let randomIndex = Math.floor(Math.random() * data.businesses.length);
+            // Choose a restaurant based on random index
+            return data.businesses[randomIndex];
+          }
 
-          // The below is our previous code to set a random restaurant...
+          let place = randomize(places);
 
-          // // Find random index value based on length of places array...
-          // const randomIndex = Math.floor(Math.random() * places.businesses.length);
-          // // Place = Restaurant at randomIndex in places array...
-          // const place = places.businesses[randomIndex];
+          while (
+            // Check to see if user has rejected specific restaurant already, OR...
+            this.state.noVenues.includes(place.name) ||
+            // Check to see if user has rejected any of the categories of food.
+            place.categories.some(category => this.state.noCategories.includes(category.alias))) {
+            // Treasure your console logs
+            console.log('REJECTED!');
+            // And then pick another place at random
+            place = randomize(places);
+          }
 
-          // Set random restaurant to place in state
-          // this.setState({ place });
+          // // Set random restaurant to place in state
+          this.setState({ place });
       })
     })
 
     .catch((err) => console.log(err));
-  }
-
-  randomize(results) {
-    // Find a random index based on length of places array...
-    let randomIndex = Math.floor(Math.random() * results.businesses.length);
-    // Choose a restaurant based on random index
-    let place = results.businesses[randomIndex];
-    // Make sure it hasn't been previously rejected by user
-    this.notRejected(place);
-  }
-
-  notRejected(place) {
-    if (
-      // If they said no to specific resturant...
-      this.state.noVenues.includes(place.name) ||
-      //... OR they said no to category...
-      place.categories.some(category => this.state.noCategories.includes(category))) {
-      //... run the randomize function again try to pick another place to eat.
-      this.randomize();
-    } else {
-      //... if the user doesn't hate this yet, set it to state
-      this.setState({ place });
-    }
   }
 
   render() {
