@@ -63,6 +63,8 @@ export default class Main extends Component {
           }
 
           let place = randomize(places);
+          let counter = 0;
+          let escapeLoop = false;
 
           while (
             // Check to see if user has rejected specific restaurant already, OR...
@@ -73,8 +75,16 @@ export default class Main extends Component {
             console.log('REJECTED!');
             // And then pick another place at random
             place = randomize(places);
+            counter ++;
+            if (counter > 19) {
+              console.log('Ran through all results. Fetching again...');
+              escapeLoop = true;
+              this.findPlaces();
+            }
           }
 
+          //
+          escapeLoop = false;
           // // Set random restaurant to place in state
           this.setState({ place });
       })
@@ -83,21 +93,26 @@ export default class Main extends Component {
     .catch((err) => console.log(err));
   }
 
-  hoistTest() {
-    console.log('You hoisted state!', this.state.place.name);
-  }
-
+  // Callback function passed to Place component to hoist state
   banCategory() {
+    // Defines a new array based on banned categories in state
     const arr = this.state.noCategories;
+    // Combines previous array with new category to be banned
     const noCategories= arr.concat(this.state.place.categories[0].alias);
+    // Sets new product of concat as state
     this.setState({ noCategories });
+    // Runs a new fetch request
     this.findPlaces();
   }
 
   banVenue() {
+    // Defines a new array based on banned venues in state
     const arr = this.state.noVenues;
+    // Combines previous array with new venue to be banned
     const noVenues= arr.concat(this.state.place.name);
+    // Sets new product of concat as state
     this.setState({ noVenues });
+    // Runs a new fetch request
     this.findPlaces();
   }
 
