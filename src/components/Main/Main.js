@@ -44,6 +44,11 @@ export default class Main extends Component {
   }
 
 
+  /* FIX: App can still crash when too many options are banned. We need to rethink how we're banning
+  categories. Maybe cap it at three or something or give it an option to reset and display a message
+  to the user. Otherwise this thing will just keep rejecting everything and sending a new fetch request
+  in an infinite loop. */
+
   findPlaces() {
     fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
@@ -83,9 +88,9 @@ export default class Main extends Component {
             }
           }
 
-          //
+          // This may be redundant
           escapeLoop = false;
-          // // Set random restaurant to place in state
+          // Set random restaurant to place in state
           this.setState({ place });
       })
     })
