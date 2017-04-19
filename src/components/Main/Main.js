@@ -13,7 +13,7 @@ export default class Main extends Component {
       term: 'restaurant',
       lat: '',
       long: '',
-      noCategories: ['newamerican', 'thai', 'pizza'],
+      noCategories: [],
       noVenues: [],
       place: {
         name: ''
@@ -44,6 +44,11 @@ export default class Main extends Component {
   }
 
 
+  /* FIX: App can still crash when too many options are banned. We need to rethink how we're banning
+  categories. Maybe cap it at three or something or give it an option to reset and display a message
+  to the user. Otherwise this thing will just keep rejecting everything and sending a new fetch request
+  in an infinite loop. */
+
   findPlaces() {
     fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
@@ -51,6 +56,9 @@ export default class Main extends Component {
     .then((r) => {
       r.json()
         .then((places) => {
+
+          console.log('Banned categories:', this.state.noCategories);
+          console.log('Banned venues:', this.state.noVenues);
 
           const randomize = (data) => {
             // Find a random index based on length of places array...
@@ -60,6 +68,8 @@ export default class Main extends Component {
           }
 
           let place = randomize(places);
+          let counter = 0;
+          let escapeLoop = false;
 
           while (
             // Check to see if user has rejected specific restaurant already, OR...
@@ -70,15 +80,48 @@ export default class Main extends Component {
             console.log('REJECTED!');
             // And then pick another place at random
             place = randomize(places);
+            counter ++;
+            if (counter > 19) {
+              console.log('Ran through all results. Fetching again...');
+              escapeLoop = true;
+              this.findPlaces();
+            }
           }
 
-          // // Set random restaurant to place in state
+          // This may be redundant
+          escapeLoop = false;
+          // Set random restaurant to place in state
           this.setState({ place });
       })
     })
 
     .catch((err) => console.log(err));
   }
+
+  // Callback function passed to Place component to hoist state
+  banCategory() {
+    // Defines a new array based on banned categories in state
+    const arr = this.state.noCategories;
+    // Combines previous array with new category to be banned
+    const noCategories= arr.concat(this.state.place.categories[0].alias);
+    // Sets new product of concat as state
+    this.setState({ noCategories });
+    // Runs a new fetch request
+    this.findPlaces();
+  }
+
+  banVenue() {
+    // Defines a new array based on banned venues in state
+    const arr = this.state.noVenues;
+    // Combines previous array with new venue to be banned
+    const noVenues= arr.concat(this.state.place.name);
+    // Sets new product of concat as state
+    this.setState({ noVenues });
+    // Runs a new fetch request
+    this.findPlaces();
+  }
+
+
 
   render() {
     return(
@@ -88,8 +131,7 @@ export default class Main extends Component {
           <div id="hasButton">
             <button className="searchButton" onClick={this.findPlaces.bind(this)}>FOOD. NOW.</button>
           </div>
-          <Place place={this.state.place} />
-
+          <Place place={this.state.place} banVenue={this.banVenue.bind(this)} banCategory={this.banCategory.bind(this)} />
         </main>
         <footer>
             <div className="otherLinks">
