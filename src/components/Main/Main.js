@@ -140,8 +140,8 @@ export default class Main extends Component {
         <footer>
             <div className="otherLinks">
               <p> Created by
-              <Link to="http://alessamessineo.com"> Alessa Messineo</Link> &
-              <Link to="http://marcelhamel.com"> Marcel Hamel</Link>
+              <a href="http://alessamessineo.com"> Alessa Messineo</a> &
+              <a href="http://marcelhamel.com"> Marcel Hamel</a>
               </p>
             </div>
           </footer>
