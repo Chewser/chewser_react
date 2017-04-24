@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router";
 
 import Place from '../Place/Place';
 import Nav from '../Nav/Nav';
@@ -21,13 +20,6 @@ export default class Main extends Component {
     }
   }
 
-
-
-  /* FIX: App can still crash when too many options are banned. We need to rethink how we're banning
-  categories. Maybe cap it at three or something or give it an option to reset and display a message
-  to the user. Otherwise this thing will just keep rejecting everything and sending a new fetch request
-  in an infinite loop. */
-
   findPlaces() {
     fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
@@ -48,7 +40,6 @@ export default class Main extends Component {
 
           let place = randomize(places);
           let counter = 0;
-          let escapeLoop = false;
 
           while (
             // Check to see if user has rejected specific restaurant already, OR...
@@ -59,16 +50,24 @@ export default class Main extends Component {
             console.log('REJECTED!');
             // And then pick another place at random
             place = randomize(places);
-            counter ++;
-            if (counter > 19) {
-              console.log('Ran through all results. Fetching again...');
-              escapeLoop = true;
+            counter++;
+            if (counter > 49) {
+              this.setState({
+                  noVenues: [],
+                  noCategories: []
+              })
+              document
+                .getElementById('resetScreen')
+                .setAttribute('style', 'display: initial');
               this.findPlaces();
+              setTimeout(() => {
+                document
+                  .getElementById('resetScreen')
+                  .setAttribute('style', 'display: none');
+              }, 3000)
             }
           }
 
-          // This may be redundant
-          escapeLoop = false;
           // Set random restaurant to place in state
           this.setState({ place });
       })
@@ -145,8 +144,11 @@ export default class Main extends Component {
               </p>
             </div>
           </footer>
-        <div id="loadingScreen">
-          <h1 className="finding">Finding food...</h1>
+        <div className="modal" id="loadingScreen">
+          <h1 className="modal-content">Finding food...</h1>
+        </div>
+        <div className="modal" id="resetScreen">
+          <h1 className="modal-content">You rejected EVERYTHING. Resetting...</h1>
         </div>
       </div>
     )

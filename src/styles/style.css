@@ -17,12 +17,6 @@ body {
   text-shadow: 2px 2px 1px #2050AB;
 }
 
-.finding {
-  font-family: 'Slabo 27px', serif;
-  font-size: 3rem;
-  letter-spacing: 2px;
-}
-
  h1 {
   font-size: 3.5rem;
   margin: 0px;
@@ -79,7 +73,7 @@ button {
   margin-bottom: 0px;
 }
 
-#loadingScreen {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -90,6 +84,16 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modal-content {
+  font-family: 'Slabo 27px', serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+#resetScreen {
+  display: none;
 }
 
 main {
