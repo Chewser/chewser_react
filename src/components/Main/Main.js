@@ -58,7 +58,7 @@ export default class Main extends Component {
               })
               document
                 .getElementById('resetScreen')
-                .setAttribute('style', 'display: initial');
+                .setAttribute('style', 'display: flex');
               this.findPlaces();
               setTimeout(() => {
                 document
