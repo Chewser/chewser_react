@@ -28,9 +28,6 @@ export default class Main extends Component {
       r.json()
         .then((places) => {
 
-          console.log('Banned categories:', this.state.noCategories);
-          console.log('Banned venues:', this.state.noVenues);
-
           const randomize = (data) => {
             // Find a random index based on length of places array...
             let randomIndex = Math.floor(Math.random() * data.businesses.length);
@@ -46,8 +43,6 @@ export default class Main extends Component {
             this.state.noVenues.includes(place.name) ||
             // Check to see if user has rejected any of the categories of food.
             place.categories.some(category => this.state.noCategories.includes(category.alias))) {
-            // Treasure your console logs
-            console.log('REJECTED!');
             // And then pick another place at random
             place = randomize(places);
             counter++;
@@ -78,9 +73,7 @@ export default class Main extends Component {
 
 
   componentDidMount() {
-    console.log('Component mounted.')
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords.latitude, position.coords.longitude);
       this.setState({
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -89,9 +82,7 @@ export default class Main extends Component {
     });
 
     let modal = setInterval(() => {
-      console.log('Checking for coordinates...')
       if(this.state.lat) {
-        console.log('Found you!')
         document
           .getElementById('loadingScreen')
           .setAttribute('style', 'visibility: hidden');
