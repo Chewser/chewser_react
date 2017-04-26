@@ -22,9 +22,7 @@ export default class Main extends Component {
   }
 
   findPlaces() {
-    // fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
-    //     method: 'GET'
-    // })
+
     Axios.get(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`)
         .then((places) => {
             console.log('*****', places)
