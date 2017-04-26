@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Place from '../Place/Place';
 import Nav from '../Nav/Nav';
+import Axios from 'axios';
 
 export default class Main extends Component {
   constructor(props) {
@@ -21,13 +22,10 @@ export default class Main extends Component {
   }
 
   findPlaces() {
-    fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
-        method: 'GET'
-    })
-    .then((r) => {
-      r.json()
-        .then((places) => {
 
+    Axios.get(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`)
+        .then((places) => {
+            console.log('*****', places)
           const randomize = (data) => {
             // Find a random index based on length of places array...
             let randomIndex = Math.floor(Math.random() * data.businesses.length);
@@ -35,7 +33,7 @@ export default class Main extends Component {
             return data.businesses[randomIndex];
           }
 
-          let place = randomize(places);
+          let place = randomize(places.data);
           let counter = 0;
 
           while (
@@ -44,7 +42,7 @@ export default class Main extends Component {
             // Check to see if user has rejected any of the categories of food.
             place.categories.some(category => this.state.noCategories.includes(category.alias))) {
             // And then pick another place at random
-            place = randomize(places);
+            place = randomize(places.data);
             counter++;
             if (counter > 49) {
               this.setState({
@@ -66,8 +64,6 @@ export default class Main extends Component {
           // Set random restaurant to place in state
           this.setState({ place });
       })
-    })
-
     .catch((err) => console.log(err));
   }
 
