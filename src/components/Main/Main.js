@@ -25,6 +25,7 @@ export default class Main extends Component {
 
     Axios.get(`http://chewser-api.herokuapp.com/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`)
         .then((places) => {
+          console.log(places);
           const randomize = (data) => {
             // Find a random index based on length of places array...
             let randomIndex = Math.floor(Math.random() * data.businesses.length);
