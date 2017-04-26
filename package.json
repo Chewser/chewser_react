@@ -1,7 +1,7 @@
 {
-  "name": "decidr-react",
+  "name": "Chewser",
   "version": "0.1.0",
-  "description": "General Assembly Unit 3 Project",
+  "description": "Chewser",
   "engines": {
     "npm": ">=3"
   },
@@ -27,7 +27,7 @@
     "open:cover": "npm run test:cover && open coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Howe, Lombard, Messineo, Hamel",
+  "author": "Messineo, Hamel",
   "license": "MIT",
   "dependencies": {
     "axios": "0.15.3",
