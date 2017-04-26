@@ -31,6 +31,7 @@
   "dependencies": {
     "axios": "0.15.3",
     "dotenv-webpack": "1.4.3",
+    "express": "4.15.2",
     "object-assign": "4.1.0",
     "react": "15.4.1",
     "react-addons-update": "15.4.2",
