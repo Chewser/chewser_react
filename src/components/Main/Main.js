@@ -21,7 +21,7 @@ export default class Main extends Component {
   }
 
   findPlaces() {
-    fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
+    fetch(`http://chewser-api.herokuapp.com/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
     })
     .then((r) => {
