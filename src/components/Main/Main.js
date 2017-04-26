@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router";
 
 import Place from '../Place/Place';
 import Nav from '../Nav/Nav';
@@ -21,13 +20,6 @@ export default class Main extends Component {
     }
   }
 
-
-
-  /* FIX: App can still crash when too many options are banned. We need to rethink how we're banning
-  categories. Maybe cap it at three or something or give it an option to reset and display a message
-  to the user. Otherwise this thing will just keep rejecting everything and sending a new fetch request
-  in an infinite loop. */
-
   findPlaces() {
     fetch(`http://localhost:8000/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`, {
         method: 'GET'
@@ -35,9 +27,6 @@ export default class Main extends Component {
     .then((r) => {
       r.json()
         .then((places) => {
-
-          console.log('Banned categories:', this.state.noCategories);
-          console.log('Banned venues:', this.state.noVenues);
 
           const randomize = (data) => {
             // Find a random index based on length of places array...
@@ -48,27 +37,32 @@ export default class Main extends Component {
 
           let place = randomize(places);
           let counter = 0;
-          let escapeLoop = false;
 
           while (
             // Check to see if user has rejected specific restaurant already, OR...
             this.state.noVenues.includes(place.name) ||
             // Check to see if user has rejected any of the categories of food.
             place.categories.some(category => this.state.noCategories.includes(category.alias))) {
-            // Treasure your console logs
-            console.log('REJECTED!');
             // And then pick another place at random
             place = randomize(places);
-            counter ++;
-            if (counter > 19) {
-              console.log('Ran through all results. Fetching again...');
-              escapeLoop = true;
+            counter++;
+            if (counter > 49) {
+              this.setState({
+                  noVenues: [],
+                  noCategories: []
+              })
+              document
+                .getElementById('resetScreen')
+                .setAttribute('style', 'display: flex');
               this.findPlaces();
+              setTimeout(() => {
+                document
+                  .getElementById('resetScreen')
+                  .setAttribute('style', 'display: none');
+              }, 3000)
             }
           }
 
-          // This may be redundant
-          escapeLoop = false;
           // Set random restaurant to place in state
           this.setState({ place });
       })
@@ -79,9 +73,7 @@ export default class Main extends Component {
 
 
   componentDidMount() {
-    console.log('Component mounted.')
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords.latitude, position.coords.longitude);
       this.setState({
         lat: position.coords.latitude,
         long: position.coords.longitude
@@ -90,9 +82,7 @@ export default class Main extends Component {
     });
 
     let modal = setInterval(() => {
-      console.log('Checking for coordinates...')
       if(this.state.lat) {
-        console.log('Found you!')
         document
           .getElementById('loadingScreen')
           .setAttribute('style', 'visibility: hidden');
@@ -140,13 +130,16 @@ export default class Main extends Component {
         <footer>
             <div className="otherLinks">
               <p> Created by
-              <Link to="http://alessamessineo.com"> Alessa Messineo</Link> &
-              <Link to="http://marcelhamel.com"> Marcel Hamel</Link>
+              <a href="http://alessamessineo.com"> Alessa Messineo</a> &
+              <a href="http://marcelhamel.com"> Marcel Hamel</a>
               </p>
             </div>
           </footer>
-        <div id="loadingScreen">
-          <h1 className="finding">Finding food...</h1>
+        <div className="modal" id="loadingScreen">
+          <h1 className="modal-content">Finding food...</h1>
+        </div>
+        <div className="modal" id="resetScreen">
+          <h1 className="modal-content">You rejected EVERYTHING. Resetting...</h1>
         </div>
       </div>
     )

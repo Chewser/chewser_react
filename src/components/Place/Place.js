@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 class Place extends Component {
   constructor(props) {
     super(props);
-    //why am i not getting this console.log?
-    console.log('this.props: ', this.props)
 
     this.state = {
       restaurant: {}
@@ -14,7 +12,6 @@ class Place extends Component {
   }
 
   render() {
-    console.log('PROPS: ', this.props)
 
     if (this.props.place.name) {
 
