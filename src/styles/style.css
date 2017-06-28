@@ -241,3 +241,56 @@ ul {
     font-size: .85rem;
   }
 }
+
+/* Media query for mobile in portrait */
+
+@media (max-width: 414px) {
+  body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+
+  .resultImage img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .resultImage {
+    height: 175px;
+    width: 175px;
+  }
+
+  .resultContainer {
+    margin: 0;
+    height: 55vh;
+    padding: 0;
+  }
+
+  .resultText h1 {
+    font-size: 1rem;
+  }
+
+  .resultText h1, .resultText p {
+    margin: 0;
+  }
+
+  .filterControls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+
+  .filterControls button {
+    margin-left: 0;
+  }
+
+  footer {
+    margin: 0;
+  }
+
+  .break {
+    display: block;
+    margin: 0;
+  }
+}
