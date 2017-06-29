@@ -11,4 +11,3 @@ app.use(express.static(__dirname + "/dist"));
 app.use(require('./resources.js'));
 
 app.listen(process.env.PORT || 3000, () => console.log('Server is listening'));
-

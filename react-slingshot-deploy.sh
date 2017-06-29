@@ -12,11 +12,19 @@ mkdir deployment
 
 cp -r ./dist ./deployment
 
+cp -r ./controllers ./deployment
+
+cp -r ./services ./deployment
+
+cp -r ../express_chewser/node_modules ./deployment
+
 cp ./Procfile ./deployment/Procfile
 
 cp ./package.json ./deployment/package.json
 
 cp ./index.js ./deployment/index.js
+
+cp ./resources.js ./deployment/resources.js
 
 cd deployment
 
