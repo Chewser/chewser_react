@@ -23,7 +23,9 @@ export default class Main extends Component {
 
   findPlaces() {
 
-    Axios.get(`http://chewser-api.herokuapp.com/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`)
+    //
+
+    Axios.get(`https://chewser.herokuapp.com/restaurants/${this.state.lat}/${this.state.long}/${this.state.term}`)
         .then((places) => {
           const randomize = (data) => {
             // Find a random index based on length of places array...
@@ -125,8 +127,8 @@ export default class Main extends Component {
         <footer>
             <div className="otherLinks">
               <p> Created by
-              <a href="http://alessamessineo.com"> Alessa Messineo</a> &
-              <a href="http://marcelhamel.com"> Marcel Hamel</a>
+              <a href="http://alessamessineo.com"> Alessa Messineo</a>
+              <span className="break"> & <a href="http://marcelhamel.com"> Marcel Hamel</a></span>
               </p>
             </div>
           </footer>
